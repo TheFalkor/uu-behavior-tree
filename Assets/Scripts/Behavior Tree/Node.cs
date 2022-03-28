@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace BehaviorTree
 {
+    using BehaviorTree.Actions;
     public enum NodeState
     {
         RUNNING,
@@ -12,7 +13,7 @@ namespace BehaviorTree
         FAILURE
     }
 
-    public abstract class Node : MonoBehaviour
+    public abstract class Node
     {
         private NodeState state;
         

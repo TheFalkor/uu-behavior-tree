@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace BehaviorTree.Actions
 {
-    public class WaitForSeconds : Node
+    public class WaitForTime : Node
     {
         private Entity entity;
 
-        public WaitForSeconds(Entity entity)
+        public WaitForTime(Entity entity)
         {
             this.entity = entity;
         }
