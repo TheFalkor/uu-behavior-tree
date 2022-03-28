@@ -14,7 +14,7 @@ namespace BehaviorTree.Actions
             this.entity = entity;
         }
 
-        public override NodeState Tick()
+        public override NodeState Tick(float deltaTime)
         {
             if (entity.waitTime <= 0)
             {
@@ -22,7 +22,7 @@ namespace BehaviorTree.Actions
             }
             else
             {
-                entity.waitTime -= Time.deltaTime;
+                entity.waitTime -= deltaTime;
                 return NodeState.RUNNING;
             }
         }

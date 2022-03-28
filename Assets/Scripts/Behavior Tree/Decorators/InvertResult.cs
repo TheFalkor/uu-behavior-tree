@@ -14,9 +14,9 @@ namespace BehaviorTree.Decorators
             this.child = child;
         }
 
-        public override NodeState Tick()
+        public override NodeState Tick(float deltaTime)
         {
-            NodeState result = child.Tick();
+            NodeState result = child.Tick(deltaTime);
 
             if (result == NodeState.SUCCESS)
                 return NodeState.FAILURE;

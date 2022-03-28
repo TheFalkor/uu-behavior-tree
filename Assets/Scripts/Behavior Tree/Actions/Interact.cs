@@ -14,7 +14,7 @@ namespace BehaviorTree.Actions
             this.entity = entity;
         }
 
-        public override NodeState Tick()
+        public override NodeState Tick(float deltaTime)
         {
             entity.Interact();
             return NodeState.SUCCESS;

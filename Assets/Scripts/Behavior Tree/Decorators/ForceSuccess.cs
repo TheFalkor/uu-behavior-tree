@@ -14,9 +14,9 @@ namespace BehaviorTree.Decorators
             this.child = child;
         }
 
-        public override NodeState Tick()
+        public override NodeState Tick(float deltaTime)
         {
-            child.Tick();
+            child.Tick(deltaTime);
             return NodeState.SUCCESS;
         }
     }

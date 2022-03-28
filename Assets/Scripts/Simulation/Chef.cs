@@ -15,6 +15,7 @@ public class Chef : Entity
 
     void Start()
     {
+        movementSpeed = 2;
         Interact();
 
         Node walkNode = new GoToTarget(this);
@@ -26,7 +27,7 @@ public class Chef : Entity
   
     void Update()
     {
-        tree.Tick();
+        tree.Tick(Time.deltaTime);
     }
 
     public override void Interact()

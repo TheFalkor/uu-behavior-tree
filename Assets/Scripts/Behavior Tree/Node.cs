@@ -17,6 +17,6 @@ namespace BehaviorTree
     {
         private NodeState state;
         
-        public abstract NodeState Tick();
+        public abstract NodeState Tick(float deltaTime);
     }
 }

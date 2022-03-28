@@ -13,11 +13,11 @@ namespace BehaviorTree
             nodeList = nodes;
         }
 
-        public override NodeState Tick()
+        public override NodeState Tick(float deltaTime)
         {
             foreach (Node node in nodeList)
             {
-                NodeState result = node.Tick();
+                NodeState result = node.Tick(deltaTime);
 
                 if (result == NodeState.FAILURE || result == NodeState.RUNNING)
                     return result;
