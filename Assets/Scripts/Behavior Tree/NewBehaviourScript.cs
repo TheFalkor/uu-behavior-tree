@@ -4,6 +4,21 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
+    // GoToTarget
+    // WaitForTime
+    // WaitForChange
+    // IsCalm
+    // PickupItem
+    // PutDownItem
+    // UseItem
+    // ReadInfo
+    // WriteInfo
+    // Decide
+    
+
+    // Yell?
+
+
     // cock
             // <COOK FOOD>
                     // Get order

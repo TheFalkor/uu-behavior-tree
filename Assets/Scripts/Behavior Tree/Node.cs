@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace BehaviorTree
 {
-    using BehaviorTree.Actions;
     public enum NodeState
     {
         RUNNING,

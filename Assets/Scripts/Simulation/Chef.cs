@@ -8,7 +8,6 @@ using BehaviorTree.Decorators;
 
 public class Chef : Entity
 {
-
     [Header("Behavior Tree Variables")]
     private Node tree;
 
@@ -16,13 +15,11 @@ public class Chef : Entity
     void Start()
     {
         movementSpeed = 2;
-        Interact();
 
         Node walkNode = new GoToTarget(this);
         Node waitNode = new WaitForTime(this);
-        Node interactNode = new Interact(this);
 
-        tree = new Sequence(new List<Node> { walkNode, waitNode, interactNode });
+        tree = new Sequence(new List<Node> { walkNode, waitNode });
     }
   
     void Update()
@@ -30,9 +27,8 @@ public class Chef : Entity
         tree.Tick(Time.deltaTime);
     }
 
-    public override void Interact()
+    public override bool DetectChange()
     {
-        targetPosition = new Vector2(Random.Range(0, 5), Random.Range(0, 5));
-        waitTime = 3;
+        return false;
     }
 }
