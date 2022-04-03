@@ -10,6 +10,8 @@ public abstract class Entity : MonoBehaviour
     [HideInInspector] public float waitTime = 0;
     [HideInInspector] public List<DataPoint> dataPointList;
     [HideInInspector] public float patienceTimer = 1;
+    [HideInInspector] public Data currentlyHoldingData;
+    [HideInInspector] public DataType currentlyHoldingType;
 
     public abstract bool DetectChange();
 }
