@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class Counter : DataPoint
 {
+    public int counting = 0;
     public override bool Use()
     {
-        return true;
+        counting += 1;
+
+        if (counting >= 5000)
+        {
+            data = Data.PLATE_CLEAN;
+            return true;
+        }
+
+        return false;
     }
 }

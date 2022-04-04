@@ -5,21 +5,22 @@ using UnityEngine;
 
 namespace BehaviorTree.Actions
 {
-    public class UseItem : Node
+    public class SetStatus : Node
     {
         private Entity entity;
+        private string status;
 
-        public UseItem(Entity entity)
+        public SetStatus(Entity entity, string status)
         {
             this.entity = entity;
+            this.status = status;
         }
 
         public override NodeState Tick(float deltaTime)
         {
-            if (entity.targetPoint == null || entity.targetPoint.Use())
-                return NodeState.SUCCESS;
+            entity.currentStatus = status;
 
-            return NodeState.RUNNING;
+            return NodeState.SUCCESS;
         }
     }
 }

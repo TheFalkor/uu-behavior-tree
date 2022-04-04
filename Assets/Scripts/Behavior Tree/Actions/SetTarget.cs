@@ -5,23 +5,22 @@ using UnityEngine;
 
 namespace BehaviorTree.Actions
 {
-    public class IsCalm : Node
+    public class SetTarget : Node
     {
         private Entity entity;
-        private Node child;
+        private DataPoint targetPoint;
 
-        public IsCalm(Entity entity, Node child)
+        public SetTarget(Entity entity, DataPoint targetPoint)
         {
             this.entity = entity;
-            this.child = child;
+            this.targetPoint = targetPoint;
         }
 
         public override NodeState Tick(float deltaTime)
         {
-            if (entity.patienceTimer > 0)
-                return NodeState.SUCCESS;
+            entity.targetPoint = targetPoint;
 
-            return child.Tick(deltaTime);
+            return NodeState.SUCCESS;
         }
     }
 }

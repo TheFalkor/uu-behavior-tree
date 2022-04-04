@@ -9,13 +9,11 @@ namespace BehaviorTree.Actions
     {
         private Entity entity;
         private DataType targetType;
-        private bool countPatience;
 
-        public WaitForChange(Entity entity, DataType targetType, bool countPatience)
+        public WaitForChange(Entity entity, DataType targetType)
         {
             this.entity = entity;
             this.targetType = targetType;
-            this.countPatience = countPatience;
         }
 
         public override NodeState Tick(float deltaTime)
@@ -31,12 +29,6 @@ namespace BehaviorTree.Actions
                     return NodeState.SUCCESS;
                 }
             }
-
-            if (countPatience)
-                entity.patienceTimer -= deltaTime;
-
-            if (entity.patienceTimer > 0)
-                return NodeState.RUNNING;
 
             return NodeState.FAILURE;
         }

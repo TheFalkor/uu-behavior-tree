@@ -7,7 +7,7 @@ namespace BehaviorTree.Actions
 {
     public class PutDownItem : Node
     {
-        private Entity entity;
+        private readonly Entity entity;
 
         public PutDownItem(Entity entity)
         {
@@ -16,7 +16,9 @@ namespace BehaviorTree.Actions
 
         public override NodeState Tick(float deltaTime)
         {
-            entity.targetPoint.PutDown(entity);
+            if (entity.currentlyHoldingData != Data.NONE)
+                entity.targetPoint.PutDown(entity);
+
             return NodeState.SUCCESS;
         }
     }
