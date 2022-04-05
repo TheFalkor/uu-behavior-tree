@@ -10,6 +10,7 @@ public class Chef : Entity
 {
     [Header("Reference To Objects")]
     public DataPoint dirtDishPlaceTEMP;
+    public DataPoint dirtDishPlaceTEMP2;
     public DataPoint sinkPoint;
     public DataPoint drawerPoint;
 
@@ -22,6 +23,7 @@ public class Chef : Entity
     {
         holdingSprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
         dataPointList.Add(dirtDishPlaceTEMP);
+        dataPointList.Add(dirtDishPlaceTEMP2);
 
         movementSpeed = 2;
         // Re-usable
@@ -31,21 +33,21 @@ public class Chef : Entity
         Node resetTarget = new SetTarget(this, null);
         Node putDownItem = new PutDownItem(this);
         Node useItem = new UseItem(this);
+        Node waitTime5 = new WaitForTime(0.5f);
 
         // Dishes
 
         Node setDrawerTarget = new SetTarget(this, drawerPoint);
-        Node putAwayDishSequence = new Sequence(new List<Node> { setDrawerTarget, goToTarget, putDownItem, resetStatus, resetTarget });
+        Node putAwayDishSequence = new Sequence(new List<Node> { setDrawerTarget, goToTarget, waitTime5, putDownItem, resetStatus, resetTarget });
         Node dishHaveClean = new HaveItem(this, putAwayDishSequence, Data.PLATE_CLEAN);
 
-        Node waitBeforePickup = new WaitForTime(0.5f);
-        Node dishCleanSequence = new Sequence(new List<Node> { goToTarget, putDownItem, useItem, waitBeforePickup, pickupItem });
+        Node dishCleanSequence = new Sequence(new List<Node> { goToTarget, putDownItem, useItem, waitTime5, pickupItem });
         Node targetIsSink = new IsTarget(this, dishCleanSequence, sinkPoint);
 
         Node setDishStatus = new SetStatus(this, "DISH");
         Node setSinkTarget = new SetTarget(this, sinkPoint);
         Node detectDish = new WaitForChange(this, DataType.DISH);
-        Node dishPickupSequence = new Sequence(new List<Node> { detectDish, goToTarget, pickupItem, setSinkTarget, setDishStatus });
+        Node dishPickupSequence = new Sequence(new List<Node> { detectDish, goToTarget, waitTime5, pickupItem, setSinkTarget, setDishStatus });
         Node dishHaveNothing = new HaveItem(this, dishPickupSequence, Data.NONE);
 
         Node dishStepSelector = new Selector(new List<Node> { dishHaveClean, targetIsSink, dishHaveNothing });

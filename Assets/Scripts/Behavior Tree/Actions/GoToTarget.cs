@@ -20,8 +20,12 @@ namespace BehaviorTree.Actions
         {
             if (entity.targetPoint.dataTransform.position == entityTransform.position)
             {
-                entity.transform.rotation = entity.targetPoint.dataTransform.rotation;
-                return NodeState.SUCCESS;
+                entityTransform.eulerAngles = Vector3.MoveTowards(entityTransform.eulerAngles, entity.targetPoint.dataTransform.eulerAngles, deltaTime * entity.movementSpeed * 180); ;
+
+                if (entityTransform.eulerAngles == entity.targetPoint.dataTransform.eulerAngles)
+                    return NodeState.SUCCESS;
+                else
+                    return NodeState.RUNNING;
             }
             else
             {
