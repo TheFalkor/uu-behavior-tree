@@ -31,7 +31,7 @@ public class SpriteDatabase : MonoBehaviour
 
             case Data.ORDER_SANDWICH:
             case Data.ORDER_NOODLES:
-            case Data.ORDER_WATER:
+            case Data.ORDER_SAUSAGE:
                 return orderSprite;
 
             case Data.FOOD_SANDWICH:
@@ -40,7 +40,7 @@ public class SpriteDatabase : MonoBehaviour
             case Data.FOOD_NOODLES:
                 return noodleSprite;
 
-            case Data.FOOD_WATER:
+            case Data.FOOD_SAUSAGE:
                 return waterSprite;
 
             case Data.PLATE_CLEAN:

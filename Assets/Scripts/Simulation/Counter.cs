@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Counter : DataPoint
 {
-    public int counting = 0;
-
     private void Start()
     {
         dataTransform = transform.Find("DataTransform");
