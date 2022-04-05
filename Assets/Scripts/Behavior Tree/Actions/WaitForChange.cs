@@ -9,17 +9,23 @@ namespace BehaviorTree.Actions
     {
         private Entity entity;
         private DataType targetType;
+        private List<DataPoint> ignorePoints;
 
-        public WaitForChange(Entity entity, DataType targetType)
+        public WaitForChange(Entity entity, DataType targetType, List<DataPoint> ignorePoints)
         {
             this.entity = entity;
             this.targetType = targetType;
+            this.ignorePoints = ignorePoints;
         }
 
         public override NodeState Tick(float deltaTime)
         {
-            if (entity.targetPoint != null)
-                return NodeState.SUCCESS;
+            if (ignorePoints == null || !ignorePoints.Contains(entity.targetPoint))
+            {
+                if (entity.targetPoint != null && entity.targetPoint.dataType == targetType)
+                    return NodeState.SUCCESS;
+            }
+
 
             for (int i = 0; i < entity.dataPointList.Count; i++)
             {

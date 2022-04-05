@@ -294,7 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f514c13a55716947abc74b7311fb871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orderSprite: {fileID: 0}
+  orderSprite: {fileID: 21300000, guid: 82d7eee987b18604da4da23208420de7, type: 3}
   sandwichSprite: {fileID: 21300000, guid: 5570acaeaf9375e46a1bab915826d45a, type: 3}
   noodleSprite: {fileID: 21300000, guid: a187fdf11eb8f254eb1fd78094fa2840, type: 3}
   sausageSprite: {fileID: 21300000, guid: ceb59164b6551014fb4a6010daa95639, type: 3}
@@ -415,7 +415,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: ae283addc5ef582448a3b4624533ea94, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 82d7eee987b18604da4da23208420de7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -579,7 +579,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: ae283addc5ef582448a3b4624533ea94, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 82d7eee987b18604da4da23208420de7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -725,7 +725,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 472694455}
-  m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -0.75, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -833,7 +833,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: ae283addc5ef582448a3b4624533ea94, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -841,7 +841,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &518324646
@@ -1042,7 +1042,7 @@ GameObject:
   - component: {fileID: 636401312}
   m_Layer: 0
   m_Name: Microwave
-  m_TagString: Untagged
+  m_TagString: Microwave
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1473,7 +1473,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: d9966aab5750b3d45968f0fe812e528e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1520,10 +1520,6 @@ MonoBehaviour:
   currentlyHoldingType: 0
   currentStatus: 
   holdingSprite: {fileID: 0}
-  dirtDishPlaceTEMP: {fileID: 1734549504}
-  dirtDishPlaceTEMP2: {fileID: 1379203149}
-  sinkPoint: {fileID: 1470916551}
-  drawerPoint: {fileID: 1158371070}
 --- !u!1 &817925036
 GameObject:
   m_ObjectHideFlags: 0
@@ -1975,7 +1971,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: ae283addc5ef582448a3b4624533ea94, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 82d7eee987b18604da4da23208420de7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2029,7 +2025,7 @@ GameObject:
   - component: {fileID: 1129375145}
   m_Layer: 0
   m_Name: Stove
-  m_TagString: Untagged
+  m_TagString: Stove
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2129,7 +2125,7 @@ GameObject:
   - component: {fileID: 1158371070}
   m_Layer: 0
   m_Name: PlateHolder
-  m_TagString: Untagged
+  m_TagString: PlateHolder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2228,7 +2224,7 @@ GameObject:
   - component: {fileID: 1177868893}
   m_Layer: 0
   m_Name: CuttingBoard
-  m_TagString: Untagged
+  m_TagString: CuttingBoard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3556,7 +3552,7 @@ GameObject:
   - component: {fileID: 1379203149}
   m_Layer: 0
   m_Name: KitchenIsland (1)
-  m_TagString: Untagged
+  m_TagString: KitchenIsland
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3589,8 +3585,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7910c5375e9d2d4591c322f45124026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataType: 3
-  data: 7
+  dataType: 1
+  data: 2
   dataTransform: {fileID: 0}
 --- !u!212 &1379203150
 SpriteRenderer:
@@ -3656,7 +3652,7 @@ GameObject:
   - component: {fileID: 1390511844}
   m_Layer: 0
   m_Name: KitchenIsland (2)
-  m_TagString: Untagged
+  m_TagString: KitchenIsland
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3689,8 +3685,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7910c5375e9d2d4591c322f45124026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataType: 3
-  data: 7
+  dataType: 1
+  data: 3
   dataTransform: {fileID: 0}
 --- !u!212 &1390511845
 SpriteRenderer:
@@ -3756,7 +3752,7 @@ GameObject:
   - component: {fileID: 1470916551}
   m_Layer: 0
   m_Name: Sink
-  m_TagString: Untagged
+  m_TagString: Sink
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3857,7 +3853,7 @@ GameObject:
   - component: {fileID: 1506799644}
   m_Layer: 0
   m_Name: KitchenIsland (3)
-  m_TagString: Untagged
+  m_TagString: KitchenIsland
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3890,8 +3886,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7910c5375e9d2d4591c322f45124026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataType: 3
-  data: 7
+  dataType: 0
+  data: 0
   dataTransform: {fileID: 0}
 --- !u!212 &1506799645
 SpriteRenderer:
@@ -4166,7 +4162,7 @@ GameObject:
   - component: {fileID: 1734549504}
   m_Layer: 0
   m_Name: KitchenIsland
-  m_TagString: Untagged
+  m_TagString: KitchenIsland
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4250,8 +4246,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7910c5375e9d2d4591c322f45124026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataType: 3
-  data: 7
+  dataType: 1
+  data: 1
   dataTransform: {fileID: 0}
 --- !u!1 &1815805907
 GameObject:
@@ -4332,7 +4328,7 @@ GameObject:
   - component: {fileID: 1909592854}
   m_Layer: 0
   m_Name: KitchenIsland (4)
-  m_TagString: Untagged
+  m_TagString: KitchenIsland
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4520,7 +4516,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: ae283addc5ef582448a3b4624533ea94, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4528,7 +4524,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2045770583

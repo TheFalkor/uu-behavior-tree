@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Sink : DataPoint
 {
-    private const float CLEAN_TIME = 1.5f;
+    private const float CLEAN_TIME = 2.0f;
     private float timer = 0;
 
 

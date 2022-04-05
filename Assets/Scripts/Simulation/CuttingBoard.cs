@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CuttingBoard : DataPoint
 {
-    private const float COOK_TIME = 1f;
+    private const float COOK_TIME = 1.5f;
     private float timer = 0;
 
 

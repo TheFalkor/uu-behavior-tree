@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Microwave : DataPoint
 {
-    private const float COOK_TIME = 1f;
+    private const float COOK_TIME = 2.5f;
     private float timer = 0;
 
 

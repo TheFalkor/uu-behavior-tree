@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Stove : DataPoint
 {
-    private const float COOK_TIME = 1f;
+    private const float COOK_TIME = 4.0f;
     private float timer = 0;
 
 
