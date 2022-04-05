@@ -7,22 +7,25 @@ namespace BehaviorTree.Actions
 {
     public class WaitForTime : Node
     {
-        private Entity entity;
+        private float waitTime;
+        private float currentWaitTime = 0;
 
-        public WaitForTime(Entity entity)
+        public WaitForTime(float waitTime)
         {
-            this.entity = entity;
+            this.waitTime = waitTime;
+            currentWaitTime = waitTime;
         }
 
         public override NodeState Tick(float deltaTime)
         {
-            if (entity.waitTime <= 0)
+            if (currentWaitTime <= 0)
             {
+                currentWaitTime = waitTime;
                 return NodeState.SUCCESS;
             }
             else
             {
-                entity.waitTime -= deltaTime;
+                currentWaitTime -= deltaTime;
                 return NodeState.RUNNING;
             }
         }

@@ -38,7 +38,8 @@ public class Chef : Entity
         Node putAwayDishSequence = new Sequence(new List<Node> { setDrawerTarget, goToTarget, putDownItem, resetStatus, resetTarget });
         Node dishHaveClean = new HaveItem(this, putAwayDishSequence, Data.PLATE_CLEAN);
 
-        Node dishCleanSequence = new Sequence(new List<Node> { goToTarget, putDownItem, useItem, pickupItem });
+        Node waitBeforePickup = new WaitForTime(0.5f);
+        Node dishCleanSequence = new Sequence(new List<Node> { goToTarget, putDownItem, useItem, waitBeforePickup, pickupItem });
         Node targetIsSink = new IsTarget(this, dishCleanSequence, sinkPoint);
 
         Node setDishStatus = new SetStatus(this, "DISH");

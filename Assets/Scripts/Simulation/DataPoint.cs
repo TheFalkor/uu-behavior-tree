@@ -28,7 +28,7 @@ public abstract class DataPoint : MonoBehaviour
 {
     public DataType dataType;
     public Data data;
-    public Transform dataTransform;
+    [HideInInspector] public Transform dataTransform;
     protected SpriteRenderer inventorySprite;
 
     public void Pickup(Entity entity)
@@ -55,5 +55,5 @@ public abstract class DataPoint : MonoBehaviour
         entity.holdingSprite.sprite = null;
     }
 
-    public abstract bool Use();
+    public abstract bool Use(float deltaTime);
 }

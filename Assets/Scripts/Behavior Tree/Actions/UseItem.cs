@@ -16,7 +16,7 @@ namespace BehaviorTree.Actions
 
         public override NodeState Tick(float deltaTime)
         {
-            if (entity.targetPoint == null || entity.targetPoint.Use())
+            if (entity.targetPoint == null || entity.targetPoint.Use(deltaTime))
                 return NodeState.SUCCESS;
 
             return NodeState.RUNNING;

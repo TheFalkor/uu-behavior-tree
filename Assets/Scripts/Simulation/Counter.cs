@@ -8,19 +8,13 @@ public class Counter : DataPoint
 
     private void Start()
     {
+        dataTransform = transform.Find("DataTransform");
         inventorySprite = transform.Find("InventorySprite").GetComponent<SpriteRenderer>();
     }
 
-    public override bool Use()
+    public override bool Use(float deltaTime)
     {
-        counting += 1;
-
-        if (counting >= 5000)
-        {
-            data = Data.PLATE_CLEAN;
-            return true;
-        }
-
+        Debug.Log("Counter.Use has not been added");
         return false;
     }
 }
