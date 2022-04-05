@@ -9,7 +9,7 @@ public class SpriteDatabase : MonoBehaviour
     [Space]
     public Sprite sandwichSprite;
     public Sprite noodleSprite;
-    public Sprite waterSprite;
+    public Sprite sausageSprite;
     [Space]
     public Sprite plateClean;
     public Sprite plateDirty;
@@ -41,7 +41,7 @@ public class SpriteDatabase : MonoBehaviour
                 return noodleSprite;
 
             case Data.FOOD_SAUSAGE:
-                return waterSprite;
+                return sausageSprite;
 
             case Data.PLATE_CLEAN:
                 return plateClean;

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sink : DataPoint
+public class Microwave : DataPoint
 {
-    private const float CLEAN_TIME = 1.5f;
+    private const float COOK_TIME = 1f;
     private float timer = 0;
 
 
@@ -16,15 +16,19 @@ public class Sink : DataPoint
 
     public override bool Use(float deltaTime)
     {
-        if (data == Data.PLATE_CLEAN)
+        if (data == Data.FOOD_NOODLES)
             return true;
+
+        if (timer == 0)
+            transform.GetChild(0).GetComponent<Animator>().SetBool("Active", true);
 
         timer += deltaTime;
 
-        if (timer >= CLEAN_TIME)
+        if (timer >= COOK_TIME)
         {
-            SetData(DataType.DISH, Data.PLATE_CLEAN);
+            SetData(DataType.FOOD, Data.FOOD_NOODLES);
             timer = 0;
+            transform.GetChild(0).GetComponent<Animator>().SetBool("Active", false);
             return true;
         }
 
