@@ -5,6 +5,12 @@ using UnityEngine;
 public class Counter : DataPoint
 {
     public int counting = 0;
+
+    private void Start()
+    {
+        inventorySprite = transform.Find("InventorySprite").GetComponent<SpriteRenderer>();
+    }
+
     public override bool Use()
     {
         counting += 1;

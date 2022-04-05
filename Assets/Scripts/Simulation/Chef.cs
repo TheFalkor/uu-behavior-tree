@@ -20,6 +20,7 @@ public class Chef : Entity
 
     void Start()
     {
+        holdingSprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
         dataPointList.Add(dirtDishPlaceTEMP);
 
         movementSpeed = 2;

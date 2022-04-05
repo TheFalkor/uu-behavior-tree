@@ -12,5 +12,6 @@ public abstract class Entity : MonoBehaviour
     /*[HideInInspector]*/ public Data currentlyHoldingData;
     /*[HideInInspector]*/ public DataType currentlyHoldingType;
     /*[HideInInspector]*/ public string currentStatus = "";
+    /*[HideInInspector]*/ public SpriteRenderer holdingSprite;
 
 }
