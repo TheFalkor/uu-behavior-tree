@@ -62,7 +62,22 @@ public class Waiter : Entity
         Node serveStatusCheck = new IsStatus(this, serveStepSelector, "SERVE");
         // !Serving food
 
-        tree = new Selector(new List<Node> { serveStatusCheck });
+        // Clean
+        Node setCleanStatus = new SetStatus(this, "CLEAN");
+        Node detectDish = new DetectPointWithType(this, DataType.DISH, islandPoints);
+        Node cleanPickupSequence = new Sequence(new List<Node> { detectDish, goToTarget, waitTime5, pickupItem, setCleanStatus });
+        Node cleanHaveNothing = new HaveItem(this, cleanPickupSequence, Data.NONE);
+
+        Node findEmptyPlace = new DetectPointWithType(this, DataType.NONE, tablePoints);
+        Node cleanDepositSequence = new Sequence(new List<Node> { findEmptyPlace, goToTarget, waitTime5, putDownItem, resetStatus, resetTarget });
+        Node cleanHaveDish = new HaveItem(this, cleanDepositSequence, Data.PLATE_DIRTY);
+
+        Node cleanStepSelector = new Selector(new List<Node> { cleanHaveDish, cleanHaveNothing });  // Have nothing, Have dish
+
+        Node cleanStatusCheck = new IsStatus(this, cleanStepSelector, "CLEAN");
+        // !Clean
+
+        tree = new Selector(new List<Node> { serveStatusCheck, cleanStatusCheck });
     }
 
 
