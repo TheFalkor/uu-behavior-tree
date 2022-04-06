@@ -6,6 +6,7 @@ public abstract class Entity : MonoBehaviour
 {
     [Header("Entity Variables")]
     /*[HideInInspector]*/ public DataPoint targetPoint;
+    /*[HideInInspector]*/ public Transform targetPointTransform;
     /*[HideInInspector]*/ public float movementSpeed = 1;
     /*[HideInInspector]*/ public float waitTime = 0;
     /*[HideInInspector]*/ public List<DataPoint> dataPointList;

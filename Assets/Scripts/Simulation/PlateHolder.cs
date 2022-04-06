@@ -6,7 +6,7 @@ public class PlateHolder : DataPoint
 {
     void Start()
     {
-        dataTransform = transform.Find("DataTransform");
+        dataTransformList.Add(transform.Find("DataTransform"));
     }
 
     public override bool Use(float deltaTime)

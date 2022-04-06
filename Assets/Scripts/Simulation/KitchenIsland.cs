@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Counter : DataPoint
+public class KitchenIsland : DataPoint
 {
     private void Start()
     {
-        dataTransform = transform.Find("DataTransform");
+        dataTransformList.Add(transform.Find("DataTransformL"));
+        dataTransformList.Add(transform.Find("DataTransformR"));
         inventorySprite = transform.Find("InventorySprite").GetComponent<SpriteRenderer>();
     }
 

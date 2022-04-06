@@ -28,7 +28,7 @@ public abstract class DataPoint : MonoBehaviour
 {
     public DataType dataType;
     public Data data;
-    [HideInInspector] public Transform dataTransform;
+    protected List<Transform> dataTransformList = new List<Transform>();
     protected SpriteRenderer inventorySprite;
 
     public void Pickup(Entity entity)
@@ -47,6 +47,21 @@ public abstract class DataPoint : MonoBehaviour
         entity.currentlyHoldingData = Data.NONE;
         entity.currentlyHoldingType = DataType.NONE;
         entity.holdingSprite.sprite = null;
+    }
+
+    public Transform GetClosestDataTransform(Entity entity)
+    {
+        if (dataTransformList.Count == 1)
+            return dataTransformList[0];
+        else if (dataTransformList.Count == 2)
+        {
+            if (Vector2.Distance(entity.transform.position, dataTransformList[0].position) < Vector2.Distance(entity.transform.position, dataTransformList[1].position))
+                return dataTransformList[0];
+            else
+                return dataTransformList[1];
+        }
+
+        return null;
     }
 
     protected void SetData(DataType type, Data data)

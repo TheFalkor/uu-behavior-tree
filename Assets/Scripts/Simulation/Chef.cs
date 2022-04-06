@@ -17,7 +17,7 @@ public class Chef : Entity
     private DataPoint cuttingBoardPoint;
 
 
-    [Header("Behavior Tree Variables")]
+    [Header("Behavior Tree")]
     private Node tree;
 
 
@@ -25,7 +25,7 @@ public class Chef : Entity
     {
         holdingSprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
 
-        foreach(GameObject go in GameObject.FindGameObjectsWithTag("KitchenIsland"))
+        foreach (GameObject go in GameObject.FindGameObjectsWithTag("KitchenIsland"))
         {
             dataPointList.Add(go.GetComponent<DataPoint>());
         }
@@ -36,8 +36,8 @@ public class Chef : Entity
         microwavePoint = GameObject.FindGameObjectWithTag("Microwave").GetComponent<DataPoint>();
         cuttingBoardPoint = GameObject.FindGameObjectWithTag("CuttingBoard").GetComponent<DataPoint>();
 
-
         movementSpeed = 2;
+
         // Re-usable
         Node goToTarget = new GoToTarget(this);
         Node pickupItem = new PickupItem(this);
@@ -49,7 +49,6 @@ public class Chef : Entity
         Node UseToolSequence = new Sequence(new List<Node> { goToTarget, putDownItem, useItem, waitTime5, pickupItem });
 
         // Dishes
-
         Node SetPlateHoldeTarget = new SetTarget(this, plateHolderPoint);
         Node putAwayDishSequence = new Sequence(new List<Node> { SetPlateHoldeTarget, goToTarget, waitTime5, putDownItem, resetStatus, resetTarget });
         Node dishHaveClean = new HaveItem(this, putAwayDishSequence, Data.PLATE_CLEAN);
@@ -58,7 +57,7 @@ public class Chef : Entity
 
         Node setDishStatus = new SetStatus(this, "DISH");
         Node setSinkTarget = new SetTarget(this, sinkPoint);
-        Node detectDish = new WaitForChange(this, DataType.DISH, null);
+        Node detectDish = new DetectPointWithType(this, DataType.DISH, null);
         Node dishPickupSequence = new Sequence(new List<Node> { detectDish, goToTarget, waitTime5, pickupItem, setSinkTarget, setDishStatus });
         Node dishHaveNothing = new HaveItem(this, dishPickupSequence, Data.NONE);
 
@@ -68,7 +67,7 @@ public class Chef : Entity
         // !Dishes
 
         // Cooking
-        Node findEmptyPlace = new WaitForChange(this, DataType.NONE, new List<DataPoint> { stovePoint, microwavePoint, cuttingBoardPoint });
+        Node findEmptyPlace = new DetectPointWithType(this, DataType.NONE, new List<DataPoint> { stovePoint, microwavePoint, cuttingBoardPoint });
         Node putUpReadyFood = new Sequence(new List<Node> { findEmptyPlace, goToTarget, waitTime5, putDownItem, resetStatus, resetTarget });
         Node cookHaveFood = new HaveType(this, putUpReadyFood, DataType.FOOD);
 
@@ -78,7 +77,7 @@ public class Chef : Entity
 
         Node setCookStatus = new SetStatus(this, "COOK");
         Node decideTool = new DecideTool(this, stovePoint, microwavePoint, cuttingBoardPoint);
-        Node detectOrder = new WaitForChange(this, DataType.ORDER, null);
+        Node detectOrder = new DetectPointWithType(this, DataType.ORDER, null);
         Node pickupOrderSequence = new Sequence(new List<Node> { detectOrder, goToTarget, waitTime5, pickupItem, decideTool, setCookStatus });
         Node cookHaveNothing = new HaveItem(this, pickupOrderSequence, Data.NONE);
 

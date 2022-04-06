@@ -30,6 +30,7 @@ namespace BehaviorTree.Actions
             else if (entity.currentlyHoldingData == Data.ORDER_SANDWICH)
                 entity.targetPoint = cuttingPoint;
 
+            entity.targetPointTransform = entity.targetPoint.GetClosestDataTransform(entity);
             return NodeState.SUCCESS;
         }
     }

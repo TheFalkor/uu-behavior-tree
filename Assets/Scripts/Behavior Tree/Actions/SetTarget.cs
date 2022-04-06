@@ -19,6 +19,8 @@ namespace BehaviorTree.Actions
         public override NodeState Tick(float deltaTime)
         {
             entity.targetPoint = targetPoint;
+            if (targetPoint)
+                entity.targetPointTransform = targetPoint.GetClosestDataTransform(entity);
 
             return NodeState.SUCCESS;
         }

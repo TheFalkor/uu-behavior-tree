@@ -18,19 +18,19 @@ namespace BehaviorTree.Actions
 
         public override NodeState Tick(float deltaTime)
         {
-            if (entity.targetPoint.dataTransform.position == entityTransform.position)
+            if (entity.targetPointTransform.position == entityTransform.position)
             {
-                entityTransform.eulerAngles = Vector3.MoveTowards(entityTransform.eulerAngles, entity.targetPoint.dataTransform.eulerAngles, deltaTime * entity.movementSpeed * 180); ;
+                entityTransform.eulerAngles = Vector3.MoveTowards(entityTransform.eulerAngles, entity.targetPointTransform.eulerAngles, deltaTime * entity.movementSpeed * 180); ;
 
-                if (entityTransform.eulerAngles == entity.targetPoint.dataTransform.eulerAngles)
+                if (entityTransform.eulerAngles == entity.targetPointTransform.eulerAngles)
                     return NodeState.SUCCESS;
                 else
                     return NodeState.RUNNING;
             }
             else
             {
-                entityTransform.eulerAngles = new Vector3(0, 0, Mathf.Atan2((entityTransform.position - entity.targetPoint.dataTransform.position).y, (entityTransform.position - entity.targetPoint.dataTransform.position).x) * Mathf.Rad2Deg + 90);
-                entityTransform.position = Vector2.MoveTowards(entityTransform.position, entity.targetPoint.dataTransform.position, deltaTime * entity.movementSpeed);
+                entityTransform.eulerAngles = new Vector3(0, 0, Mathf.Atan2((entityTransform.position - entity.targetPointTransform.position).y, (entityTransform.position - entity.targetPointTransform.position).x) * Mathf.Rad2Deg + 90);
+                entityTransform.position = Vector2.MoveTowards(entityTransform.position, entity.targetPointTransform.position, deltaTime * entity.movementSpeed);
                 return NodeState.RUNNING;
             }
         }

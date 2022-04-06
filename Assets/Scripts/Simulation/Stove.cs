@@ -10,7 +10,7 @@ public class Stove : DataPoint
 
     private void Start()
     {
-        dataTransform = transform.Find("DataTransform");
+        dataTransformList.Add(transform.Find("DataTransform"));
         inventorySprite = transform.Find("InventorySprite").GetComponent<SpriteRenderer>();
     }
 

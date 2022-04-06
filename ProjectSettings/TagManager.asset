@@ -10,6 +10,7 @@ TagManager:
   - Stove
   - Microwave
   - CuttingBoard
+  - Table
   layers:
   - Default
   - TransparentFX
