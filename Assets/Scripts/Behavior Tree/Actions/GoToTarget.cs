@@ -9,6 +9,8 @@ namespace BehaviorTree.Actions
     {
         private Entity entity;
         private Transform entityTransform;
+        private Transform targetTransformMemory;
+        private Quaternion targetDirection;
 
         public GoToTarget(Entity entity)
         {
@@ -20,7 +22,7 @@ namespace BehaviorTree.Actions
         {
             if (entity.targetPointTransform.position == entityTransform.position)
             {
-                entityTransform.eulerAngles = Vector3.MoveTowards(entityTransform.eulerAngles, entity.targetPointTransform.eulerAngles, deltaTime * entity.movementSpeed * 180); ;
+                entityTransform.rotation = Quaternion.RotateTowards(entityTransform.rotation, entity.targetPointTransform.rotation, deltaTime * 360);
 
                 if (entityTransform.eulerAngles == entity.targetPointTransform.eulerAngles)
                     return NodeState.SUCCESS;
@@ -29,8 +31,18 @@ namespace BehaviorTree.Actions
             }
             else
             {
-                entityTransform.eulerAngles = new Vector3(0, 0, Mathf.Atan2((entityTransform.position - entity.targetPointTransform.position).y, (entityTransform.position - entity.targetPointTransform.position).x) * Mathf.Rad2Deg + 90);
-                entityTransform.position = Vector2.MoveTowards(entityTransform.position, entity.targetPointTransform.position, deltaTime * entity.movementSpeed);
+                if (targetTransformMemory != entity.targetPointTransform)
+                {
+                    targetTransformMemory = entity.targetPointTransform;
+                    Vector3 angle = new Vector3(0, 0, Mathf.Atan2((entityTransform.position - entity.targetPointTransform.position).y, (entityTransform.position - entity.targetPointTransform.position).x) * Mathf.Rad2Deg + 90);
+                    targetDirection = Quaternion.Euler(angle);
+                }
+
+                if (entityTransform.eulerAngles != targetDirection.eulerAngles)
+                    entityTransform.rotation = Quaternion.RotateTowards(entityTransform.rotation, targetDirection, deltaTime * 360);
+                else
+                    entityTransform.position = Vector2.MoveTowards(entityTransform.position, entity.targetPointTransform.position, deltaTime * entity.movementSpeed);
+
                 return NodeState.RUNNING;
             }
         }
