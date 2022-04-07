@@ -8,7 +8,8 @@ public enum DataType
     NONE,
     ORDER,
     FOOD,
-    DISH
+    DISH,
+    WAITING
 }
 
 public enum Data
@@ -21,7 +22,10 @@ public enum Data
     FOOD_NOODLES,
     FOOD_SAUSAGE,
     PLATE_DIRTY,
-    PLATE_CLEAN
+    PLATE_CLEAN,
+    WAITING_SANDWICH,
+    WAITING_NOODLES,
+    WAITING_SAUSAGE
 }
 
 public abstract class DataPoint : MonoBehaviour

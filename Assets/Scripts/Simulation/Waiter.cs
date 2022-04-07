@@ -14,10 +14,7 @@ public class Waiter : Entity
 
     [Header("Behavior Tree")]
     private Node tree;
-    // 1. Serve food
-    // 2. Get trash
-    // 3. Get order
-    
+
 
     void Start()
     {
@@ -46,11 +43,26 @@ public class Waiter : Entity
         Node resetTarget = new SetTarget(this, null);
         Node putDownItem = new PutDownItem(this);
         Node waitTime5 = new WaitForTime(0.5f);
+        Node removeData = new RemoveData(this);
 
         // Serving food
-        Node findCustomer = new FindCustomerTable(this);
-        Node serveFoodSequence = new Sequence(new List<Node> { findCustomer, goToTarget, waitTime5, putDownItem, resetStatus, resetTarget });
-        Node serveHaveFood = new HaveType(this, serveFoodSequence, DataType.FOOD);
+        Node serveFoodSequence = new Sequence(new List<Node> { goToTarget, waitTime5, putDownItem, removeData, resetStatus, resetTarget });
+
+        Node findSandwichTable = new DetectPointWithData(this, Data.WAITING_SANDWICH, null);
+        Node sandwichSequence = new Sequence(new List<Node> { findSandwichTable, serveFoodSequence });
+        Node haveSandwich = new HaveItem(this, sandwichSequence, Data.FOOD_SANDWICH);
+
+        Node findNoodlesTable = new DetectPointWithData(this, Data.WAITING_NOODLES, null);
+        Node noodlesSequence = new Sequence(new List<Node> { findNoodlesTable, serveFoodSequence });
+        Node haveNoodles = new HaveItem(this, noodlesSequence, Data.FOOD_NOODLES);
+
+        Node findSausageTable = new DetectPointWithData(this, Data.WAITING_SAUSAGE, null);
+        Node sausageSequence = new Sequence(new List<Node> { findSausageTable, serveFoodSequence });
+        Node haveSausage = new HaveItem(this, sausageSequence, Data.FOOD_SAUSAGE);
+
+        Node findServeSelector = new Selector(new List<Node> { haveSandwich, haveNoodles, haveSausage });
+
+        Node serveHaveFood = new HaveType(this, findServeSelector, DataType.FOOD);
 
         Node setServeStatus = new SetStatus(this, "SERVE");
         Node detectFood = new DetectPointWithType(this, DataType.FOOD, tablePoints);
@@ -72,10 +84,14 @@ public class Waiter : Entity
         Node cleanDepositSequence = new Sequence(new List<Node> { findEmptyPlace, goToTarget, waitTime5, putDownItem, resetStatus, resetTarget });
         Node cleanHaveDish = new HaveItem(this, cleanDepositSequence, Data.PLATE_DIRTY);
 
-        Node cleanStepSelector = new Selector(new List<Node> { cleanHaveDish, cleanHaveNothing });  // Have nothing, Have dish
+        Node cleanStepSelector = new Selector(new List<Node> { cleanHaveDish, cleanHaveNothing });
 
         Node cleanStatusCheck = new IsStatus(this, cleanStepSelector, "CLEAN");
         // !Clean
+
+        // Get order
+
+        // !Get order
 
         tree = new Selector(new List<Node> { serveStatusCheck, cleanStatusCheck });
     }
