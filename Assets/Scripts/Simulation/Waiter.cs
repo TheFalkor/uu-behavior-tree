@@ -10,7 +10,6 @@ public class Waiter : Entity
     [Header("References To Objects")]
     private List<DataPoint> islandPoints = new List<DataPoint>();
     private List<DataPoint> tablePoints = new List<DataPoint>();
-    [HideInInspector] public List<CustomerMemory> customerList = new List<CustomerMemory>();
 
     [Header("Behavior Tree")]
     private Node tree;
@@ -31,10 +30,6 @@ public class Waiter : Entity
             tablePoints.Add(go.GetComponent<DataPoint>());
             dataPointList.Add(go.GetComponent<DataPoint>());
         }
-
-        customerList.Add(new CustomerMemory { dataPoint = tablePoints[0], wantedFood = Data.FOOD_SANDWICH });
-
-        movementSpeed = 2;
 
         // Re-usable
         Node goToTarget = new GoToTarget(this);
@@ -111,11 +106,4 @@ public class Waiter : Entity
     {
         tree.Tick(Time.deltaTime);
     }
-}
-
-
-public struct CustomerMemory
-{
-    public Data wantedFood;
-    public DataPoint dataPoint;
 }

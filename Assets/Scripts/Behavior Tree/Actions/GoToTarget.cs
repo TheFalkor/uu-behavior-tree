@@ -41,7 +41,7 @@ namespace BehaviorTree.Actions
                 if (entityTransform.eulerAngles != targetDirection.eulerAngles)
                     entityTransform.rotation = Quaternion.RotateTowards(entityTransform.rotation, targetDirection, deltaTime * 360);
                 else
-                    entityTransform.position = Vector2.MoveTowards(entityTransform.position, entity.targetPointTransform.position, deltaTime * entity.movementSpeed);
+                    entityTransform.position = Vector2.MoveTowards(entityTransform.position, entity.targetPointTransform.position, deltaTime * 2);
 
                 return NodeState.RUNNING;
             }

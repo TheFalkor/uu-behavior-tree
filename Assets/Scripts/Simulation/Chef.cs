@@ -36,8 +36,6 @@ public class Chef : Entity
         microwavePoint = GameObject.FindGameObjectWithTag("Microwave").GetComponent<DataPoint>();
         cuttingBoardPoint = GameObject.FindGameObjectWithTag("CuttingBoard").GetComponent<DataPoint>();
 
-        movementSpeed = 2;
-
         // Re-usable
         Node goToTarget = new GoToTarget(this);
         Node pickupItem = new PickupItem(this);
