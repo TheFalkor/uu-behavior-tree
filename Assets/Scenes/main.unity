@@ -415,7 +415,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 82d7eee987b18604da4da23208420de7, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -423,7 +423,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &222891086
@@ -585,8 +585,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7910c5375e9d2d4591c322f45124026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataType: 4
-  data: 9
+  dataType: 1
+  data: 1
 --- !u!212 &372797818
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -709,7 +709,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 82d7eee987b18604da4da23208420de7, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -717,7 +717,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &412792922
@@ -2380,7 +2380,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 82d7eee987b18604da4da23208420de7, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2388,7 +2388,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1106577430
@@ -4022,8 +4022,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7910c5375e9d2d4591c322f45124026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataType: 1
-  data: 2
+  dataType: 0
+  data: 0
 --- !u!212 &1379203150
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4122,8 +4122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7910c5375e9d2d4591c322f45124026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataType: 1
-  data: 3
+  dataType: 0
+  data: 0
 --- !u!212 &1390511845
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4773,8 +4773,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7910c5375e9d2d4591c322f45124026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataType: 4
-  data: 10
+  dataType: 1
+  data: 1
 --- !u!212 &1706685014
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4924,8 +4924,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7910c5375e9d2d4591c322f45124026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataType: 1
-  data: 1
+  dataType: 0
+  data: 0
 --- !u!1 &1767102505
 GameObject:
   m_ObjectHideFlags: 0

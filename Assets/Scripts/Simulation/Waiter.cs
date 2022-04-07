@@ -44,6 +44,7 @@ public class Waiter : Entity
         Node putDownItem = new PutDownItem(this);
         Node waitTime5 = new WaitForTime(0.5f);
         Node removeData = new RemoveData(this);
+        Node findEmptyPlace = new DetectPointWithType(this, DataType.NONE, tablePoints);
 
         // Serving food
         Node serveFoodSequence = new Sequence(new List<Node> { goToTarget, waitTime5, putDownItem, removeData, resetStatus, resetTarget });
@@ -80,7 +81,6 @@ public class Waiter : Entity
         Node cleanPickupSequence = new Sequence(new List<Node> { detectDish, goToTarget, waitTime5, pickupItem, setCleanStatus });
         Node cleanHaveNothing = new HaveItem(this, cleanPickupSequence, Data.NONE);
 
-        Node findEmptyPlace = new DetectPointWithType(this, DataType.NONE, tablePoints);
         Node cleanDepositSequence = new Sequence(new List<Node> { findEmptyPlace, goToTarget, waitTime5, putDownItem, resetStatus, resetTarget });
         Node cleanHaveDish = new HaveItem(this, cleanDepositSequence, Data.PLATE_DIRTY);
 
@@ -90,10 +90,20 @@ public class Waiter : Entity
         // !Clean
 
         // Get order
+        Node setOrderStatus = new SetStatus(this, "ORDER");
+        Node detectOrder = new DetectPointWithType(this, DataType.ORDER, islandPoints);
+        Node orderPickupSequence = new Sequence(new List<Node> { detectOrder, goToTarget, waitTime5, pickupItem, setOrderStatus });
+        Node orderHaveNothing = new HaveItem(this, orderPickupSequence, Data.NONE);
 
+        Node orderDepositSequence = new Sequence(new List<Node> { findEmptyPlace, goToTarget, waitTime5, putDownItem, resetStatus, resetTarget });
+        Node orderHaveOrder = new HaveType(this, orderDepositSequence, DataType.ORDER);
+
+        Node orderStepSelector = new Selector(new List<Node> { orderHaveOrder, orderHaveNothing });
+
+        Node orderStatusCheck = new IsStatus(this, orderStepSelector, "ORDER");
         // !Get order
 
-        tree = new Selector(new List<Node> { serveStatusCheck, cleanStatusCheck });
+        tree = new Selector(new List<Node> { serveStatusCheck, cleanStatusCheck, orderStatusCheck });
     }
 
 
