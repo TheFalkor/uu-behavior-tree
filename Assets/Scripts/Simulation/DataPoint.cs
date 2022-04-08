@@ -30,8 +30,8 @@ public enum Data
 
 public abstract class DataPoint : MonoBehaviour
 {
-    public DataType dataType;
-    public Data data;
+    [HideInInspector] public DataType dataType;
+    [HideInInspector] public Data data;
     protected List<Transform> dataTransformList = new List<Transform>();
     protected SpriteRenderer inventorySprite;
 

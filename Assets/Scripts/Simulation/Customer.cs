@@ -9,22 +9,48 @@ public class Customer : Entity
     [Header("References To Objects")]
     private List<DataPoint> tablePoints = new List<DataPoint>();
     private DataPoint doorExit;
+    private float lifeTime = 0;
 
     [Header("Behavior Tree")]
     private Node tree;
 
 
-    void Start()
+    public void Initialize()
     {
-        holdingSprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
-
-        foreach (GameObject go in GameObject.FindGameObjectsWithTag("Table"))
+        if (!holdingSprite)
         {
-            tablePoints.Add(go.GetComponent<DataPoint>());
-            dataPointList.Add(go.GetComponent<DataPoint>());
+            holdingSprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
+
+            foreach (GameObject go in GameObject.FindGameObjectsWithTag("Table"))
+            {
+                tablePoints.Add(go.GetComponent<DataPoint>());
+                dataPointList.Add(go.GetComponent<DataPoint>());
+            }
+
+            doorExit = GameObject.FindGameObjectWithTag("Door").GetComponent<DataPoint>();
         }
 
-        doorExit = GameObject.FindGameObjectWithTag("Door").GetComponent<DataPoint>();
+
+        Data wantFood;
+        Data waitFood;
+
+        int random = Random.Range(0, 3);
+
+        if (random == 0)
+        {
+            wantFood = Data.ORDER_NOODLES;
+            waitFood = Data.WAITING_NOODLES;
+        }
+        else if (random == 1)
+        {
+            wantFood = Data.ORDER_SANDWICH;
+            waitFood = Data.WAITING_SANDWICH;
+        }
+        else
+        {
+            wantFood = Data.ORDER_SAUSAGE;
+            waitFood = Data.WAITING_SAUSAGE;
+        }
 
         // Re-usable
         Node goToTarget = new GoToTarget(this);
@@ -39,7 +65,7 @@ public class Customer : Entity
         // Leave
 
 
-        Node leaveSequence = new Sequence(new List<Node> { goToTarget /*DestroyObject*/ });
+        Node leaveSequence = new Sequence(new List<Node> { goToTarget, waitTime5, resetTarget, resetStatus });
 
         Node leaveStatusCheck = new IsStatus(this, leaveSequence, "LEAVE");
         // !Leave
@@ -56,7 +82,7 @@ public class Customer : Entity
 
         // Wait
         Node waitOrderTaken = new PointHasType(this, DataType.NONE);
-        Node createWaitOrder = new CreateData(this, DataType.WAITING, Data.WAITING_NOODLES);
+        Node createWaitOrder = new CreateData(this, DataType.WAITING, waitFood);
         Node setEatStatus = new SetStatus(this, "EAT");
 
         Node waitSequence = new Sequence(new List<Node> { waitOrderTaken, createWaitOrder, putDownItem, setEatStatus });
@@ -67,7 +93,7 @@ public class Customer : Entity
         // Order
         Node setOrderStatus = new SetStatus(this, "ORDER");
         Node detectEmptyTable = new DetectPointWithType(this, DataType.NONE, null);
-        Node createOrder = new CreateData(this, DataType.ORDER, Data.ORDER_NOODLES);
+        Node createOrder = new CreateData(this, DataType.ORDER, wantFood);
         Node setWaitStatus = new SetStatus(this, "WAIT");
 
         Node orderSequence = new Sequence(new List<Node> { setOrderStatus, detectEmptyTable, goToTarget, createOrder, waitTime5, putDownItem, setWaitStatus });    //  
@@ -79,8 +105,15 @@ public class Customer : Entity
     }
 
     
-    void Update()
+    public void Tick(float deltaTime)
     {
-        tree.Tick(Time.deltaTime);
+        tree.Tick(deltaTime);
+        lifeTime += deltaTime;
+
+        if (doorExit.transform.position == transform.position && lifeTime >= 5)
+        {
+            lifeTime = 0;
+            Initialize();
+        }
     }
 }

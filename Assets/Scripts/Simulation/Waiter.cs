@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using BehaviorTree;
 using BehaviorTree.Actions;
-using BehaviorTree.Decorators;
 
 public class Waiter : Entity
 {
     [Header("References To Objects")]
     private List<DataPoint> islandPoints = new List<DataPoint>();
     private List<DataPoint> tablePoints = new List<DataPoint>();
+    private DataPoint idlePoint;
 
     [Header("Behavior Tree")]
     private Node tree;
 
 
-    void Start()
+    public void Initialize()
     {
         holdingSprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        idlePoint = GameObject.Find("WaiterIdle").GetComponent<DataPoint>();
 
         foreach (GameObject go in GameObject.FindGameObjectsWithTag("KitchenIsland"))
         {
@@ -98,12 +99,17 @@ public class Waiter : Entity
         Node orderStatusCheck = new IsStatus(this, orderStepSelector, "ORDER");
         // !Get order
 
-        tree = new Selector(new List<Node> { serveStatusCheck, cleanStatusCheck, orderStatusCheck });
+        // Idle
+        Node setIdleTarget = new SetTarget(this, idlePoint);
+        Node idleSequence = new Sequence(new List<Node> { setIdleTarget, goToTarget });
+        // !Idle
+
+        tree = new Selector(new List<Node> { serveStatusCheck, cleanStatusCheck, orderStatusCheck, idleSequence });
     }
 
 
-    void Update()
+    public void Tick(float deltaTime)
     {
-        tree.Tick(Time.deltaTime);
+        tree.Tick(deltaTime);
     }
 }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using BehaviorTree;
 using BehaviorTree.Actions;
-using BehaviorTree.Decorators;
 
 
 public class Chef : Entity
@@ -21,7 +20,7 @@ public class Chef : Entity
     private Node tree;
 
 
-    void Start()
+    public void Initialize()
     {
         holdingSprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
 
@@ -87,9 +86,9 @@ public class Chef : Entity
         tree = new Selector(new List<Node> { dishStatusCheck, cookStatusCheck });
     }
   
-    void Update()
+    public void Tick(float deltaTime)
     {
-        tree.Tick(Time.deltaTime);
+        tree.Tick(deltaTime);
     }
 
 }
